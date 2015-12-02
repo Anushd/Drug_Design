@@ -1,0 +1,48 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww7860\viewh7060\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\b\fs24 \cf0 Calculating Atom Densities of 8 Quadrants of the Ligand Space
+\b0 \
+\
+
+\i For each of the 8 quadrants\'85
+\i0 \
+\
+1. The data set will be the properties of the ligand/binding affinity/etc. (relevant to Lipinski\'92s rule) and labels will be probability of finding an atom in that quadrant (atom density) which is the ratio of zeros to nonzeros in the structural array.\
+\
+2. The algorithm will accept properties of a drug as input (high membrane permeability according to lipinski\'92s rule) and predict the atom density of each quadrant of the unknown drug. \
+\
+3. Split each of the quadrants into 8 sub-quadrants\
+\
+
+\b Calculating Atom Densities of sub-quadrants\
+\
+
+\i\b0 For each of the 8*8 sub-quadrants\'85\
+\
+
+\i0 1. Predict atom density of the unknown drug using the same method as before.\
+\
+
+\b Calculating Mass Densities of the Ligand Space\
+\
+
+\i\b0 For each point in the ligand space\'85
+\i0 \
+\
+1. The data set will be the drug properties/etc. and the labels will be the mass of the atom at that point.\
+\
+2. Generate the predicted mass of the atom at that point.\
+\
+3. Concatenate the mass values into a structural array.\
+\
+
+\b Application of Mass Densities to Atom Densities Data\
+\
+
+\b0 I have no idea :( \'85\
+\
+}
