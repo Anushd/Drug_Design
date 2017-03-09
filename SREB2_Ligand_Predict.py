@@ -1,10 +1,12 @@
 from numpy import *
+import numpy as np
 from math import *
 from sklearn import datasets, svm, metrics 
 set_printoptions(threshold='nan')
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from decimal import *
+from itertools import product, combinations
 
 #Set precision of decimal calulations
 getcontext().prec = 5
@@ -403,6 +405,7 @@ print
 
 #Second iteration on quadrant 5
 quad_count=0
+final_graph=[]
 for i in quadrant:
 	print "Quadrant:"
 	print i+1
@@ -448,13 +451,412 @@ for i in quadrant:
 	finalB = []
 	for i in quadrant:
 		finalB.append(SVM(probsb,data,i,to_predict))
-
+	final_graph.append(finalB)
 	print "Predicted:"
 	print finalB
 	print
 	print 
 
-fig = plt.figure()
+'''fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(model1[1], model1[2], model1[3])
+plt.show()'''
+
+###Plot_Probabilities###
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+ax.set_aspect("equal")
+
+#Quadrant_1
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][0]+6
+y = np.sin(u)*np.sin(v)*final_graph[0][0]+6
+z = np.cos(v)*final_graph[0][0]
+ax.plot_wireframe(x, y, z, color="r")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][1]+4
+y = np.sin(u)*np.sin(v)*final_graph[0][1]+6
+z = np.cos(v)*final_graph[0][1]
+ax.plot_wireframe(x, y, z, color="r")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][2]+4
+y = np.sin(u)*np.sin(v)*final_graph[0][2]+4
+z = np.cos(v)*final_graph[0][2]
+ax.plot_wireframe(x, y, z, color="r")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][3]+6
+y = np.sin(u)*np.sin(v)*final_graph[0][3]+4
+z = np.cos(v)*final_graph[0][3]
+ax.plot_wireframe(x, y, z, color="r")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][4]+6
+y = np.sin(u)*np.sin(v)*final_graph[0][4]+6
+z = np.cos(v)*final_graph[0][4]+2
+ax.plot_wireframe(x, y, z, color="r")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][5]+4
+y = np.sin(u)*np.sin(v)*final_graph[0][5]+6
+z = np.cos(v)*final_graph[0][5]+2
+ax.plot_wireframe(x, y, z, color="r")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][6]+4
+y = np.sin(u)*np.sin(v)*final_graph[0][6]+4
+z = np.cos(v)*final_graph[0][6]+2
+ax.plot_wireframe(x, y, z, color="r")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[0][7]+6
+y = np.sin(u)*np.sin(v)*final_graph[0][7]+4
+z = np.cos(v)*final_graph[0][7]+2
+ax.plot_wireframe(x, y, z, color="r")
+
+#Quadrant_2
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][0]+2
+y = np.sin(u)*np.sin(v)*final_graph[1][0]+6
+z = np.cos(v)*final_graph[1][0]
+ax.plot_wireframe(x, y, z, color="c")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][1]
+y = np.sin(u)*np.sin(v)*final_graph[1][1]+6
+z = np.cos(v)*final_graph[1][1]
+ax.plot_wireframe(x, y, z, color="c")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][2]
+y = np.sin(u)*np.sin(v)*final_graph[1][2]+4
+z = np.cos(v)*final_graph[1][2]
+ax.plot_wireframe(x, y, z, color="c")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][3]+2
+y = np.sin(u)*np.sin(v)*final_graph[1][3]+4
+z = np.cos(v)*final_graph[1][3]
+ax.plot_wireframe(x, y, z, color="c")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][4]+2
+y = np.sin(u)*np.sin(v)*final_graph[1][4]+6
+z = np.cos(v)*final_graph[1][4]+2
+ax.plot_wireframe(x, y, z, color="c")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][5]
+y = np.sin(u)*np.sin(v)*final_graph[1][5]+6
+z = np.cos(v)*final_graph[1][5]+2
+ax.plot_wireframe(x, y, z, color="c")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][6]
+y = np.sin(u)*np.sin(v)*final_graph[1][6]+4
+z = np.cos(v)*final_graph[1][6]+2
+ax.plot_wireframe(x, y, z, color="c")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[1][7]+2
+y = np.sin(u)*np.sin(v)*final_graph[1][7]+4
+z = np.cos(v)*final_graph[1][7]+2
+ax.plot_wireframe(x, y, z, color="c")
+
+#Quadrant_3
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][0]+2
+y = np.sin(u)*np.sin(v)*final_graph[2][0]+2
+z = np.cos(v)*final_graph[2][0]
+ax.plot_wireframe(x, y, z, color="g")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][1]
+y = np.sin(u)*np.sin(v)*final_graph[2][1]+2
+z = np.cos(v)*final_graph[2][1]
+ax.plot_wireframe(x, y, z, color="g")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][2]
+y = np.sin(u)*np.sin(v)*final_graph[2][2]
+z = np.cos(v)*final_graph[2][2]
+ax.plot_wireframe(x, y, z, color="g")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][3]+2
+y = np.sin(u)*np.sin(v)*final_graph[2][3]
+z = np.cos(v)*final_graph[2][3]
+ax.plot_wireframe(x, y, z, color="g")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][4]+2
+y = np.sin(u)*np.sin(v)*final_graph[2][4]+2
+z = np.cos(v)*final_graph[2][4]+2
+ax.plot_wireframe(x, y, z, color="g")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][5]
+y = np.sin(u)*np.sin(v)*final_graph[2][5]+2
+z = np.cos(v)*final_graph[2][5]+2
+ax.plot_wireframe(x, y, z, color="g")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][6]
+y = np.sin(u)*np.sin(v)*final_graph[2][6]
+z = np.cos(v)*final_graph[2][6]+2
+ax.plot_wireframe(x, y, z, color="g")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[2][7]+2
+y = np.sin(u)*np.sin(v)*final_graph[2][7]
+z = np.cos(v)*final_graph[2][7]+2
+ax.plot_wireframe(x, y, z, color="g")
+
+#Quadrant_4
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][0]+6
+y = np.sin(u)*np.sin(v)*final_graph[3][0]+2
+z = np.cos(v)*final_graph[3][0]
+ax.plot_wireframe(x, y, z, color="m")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][1]+4
+y = np.sin(u)*np.sin(v)*final_graph[3][1]+2
+z = np.cos(v)*final_graph[3][1]
+ax.plot_wireframe(x, y, z, color="m")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][2]+4
+y = np.sin(u)*np.sin(v)*final_graph[3][2]
+z = np.cos(v)*final_graph[3][2]
+ax.plot_wireframe(x, y, z, color="m")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][3]+6
+y = np.sin(u)*np.sin(v)*final_graph[3][3]
+z = np.cos(v)*final_graph[3][3]
+ax.plot_wireframe(x, y, z, color="m")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][4]+6
+y = np.sin(u)*np.sin(v)*final_graph[3][4]+2
+z = np.cos(v)*final_graph[3][4]+2
+ax.plot_wireframe(x, y, z, color="m")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][5]+4
+y = np.sin(u)*np.sin(v)*final_graph[3][5]+2
+z = np.cos(v)*final_graph[3][5]+2
+ax.plot_wireframe(x, y, z, color="m")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][6]+4
+y = np.sin(u)*np.sin(v)*final_graph[3][6]
+z = np.cos(v)*final_graph[3][6]+2
+ax.plot_wireframe(x, y, z, color="m")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[3][7]+6
+y = np.sin(u)*np.sin(v)*final_graph[3][7]
+z = np.cos(v)*final_graph[3][7]+2
+ax.plot_wireframe(x, y, z, color="m")
+
+#Quadrant_5
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][0]+6
+y = np.sin(u)*np.sin(v)*final_graph[4][0]+6
+z = np.cos(v)*final_graph[4][0]+4
+ax.plot_wireframe(x, y, z, color="k")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][1]+4
+y = np.sin(u)*np.sin(v)*final_graph[4][1]+6
+z = np.cos(v)*final_graph[4][1]+4
+ax.plot_wireframe(x, y, z, color="k")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][2]+4
+y = np.sin(u)*np.sin(v)*final_graph[4][2]+4
+z = np.cos(v)*final_graph[4][2]+4
+ax.plot_wireframe(x, y, z, color="k")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][3]+6
+y = np.sin(u)*np.sin(v)*final_graph[4][3]+4
+z = np.cos(v)*final_graph[4][3]+4
+ax.plot_wireframe(x, y, z, color="k")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][4]+6
+y = np.sin(u)*np.sin(v)*final_graph[4][4]+6
+z = np.cos(v)*final_graph[4][4]+6
+ax.plot_wireframe(x, y, z, color="k")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][5]+4
+y = np.sin(u)*np.sin(v)*final_graph[4][5]+6
+z = np.cos(v)*final_graph[4][5]+6
+ax.plot_wireframe(x, y, z, color="k")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][6]+4
+y = np.sin(u)*np.sin(v)*final_graph[4][6]+4
+z = np.cos(v)*final_graph[4][6]+6
+ax.plot_wireframe(x, y, z, color="k")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[4][7]+6
+y = np.sin(u)*np.sin(v)*final_graph[4][7]+4
+z = np.cos(v)*final_graph[4][7]+6
+ax.plot_wireframe(x, y, z, color="k")
+
+#Quadrant_6
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][0]+2
+y = np.sin(u)*np.sin(v)*final_graph[5][0]+6
+z = np.cos(v)*final_graph[5][0]+4
+ax.plot_wireframe(x, y, z, color="0.7")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][1]+0
+y = np.sin(u)*np.sin(v)*final_graph[5][1]+6
+z = np.cos(v)*final_graph[5][1]+4
+ax.plot_wireframe(x, y, z, color="0.7")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][2]+0
+y = np.sin(u)*np.sin(v)*final_graph[5][2]+4
+z = np.cos(v)*final_graph[5][2]+4
+ax.plot_wireframe(x, y, z, color="0.7")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][3]+2
+y = np.sin(u)*np.sin(v)*final_graph[5][3]+4
+z = np.cos(v)*final_graph[5][3]+4
+ax.plot_wireframe(x, y, z, color="0.7")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][4]+2
+y = np.sin(u)*np.sin(v)*final_graph[5][4]+6
+z = np.cos(v)*final_graph[5][4]+6
+ax.plot_wireframe(x, y, z, color="0.7")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][5]+0
+y = np.sin(u)*np.sin(v)*final_graph[5][5]+6
+z = np.cos(v)*final_graph[5][5]+6
+ax.plot_wireframe(x, y, z, color="0.7")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][6]+0
+y = np.sin(u)*np.sin(v)*final_graph[5][6]+4
+z = np.cos(v)*final_graph[5][6]+6
+ax.plot_wireframe(x, y, z, color="0.7")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[5][7]+2
+y = np.sin(u)*np.sin(v)*final_graph[5][7]+4
+z = np.cos(v)*final_graph[5][7]+6
+ax.plot_wireframe(x, y, z, color="0.7")
+
+#Quadrant_7
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][0]+2
+y = np.sin(u)*np.sin(v)*final_graph[6][0]+2
+z = np.cos(v)*final_graph[6][0]+4
+ax.plot_wireframe(x, y, z, color="y")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][1]+0
+y = np.sin(u)*np.sin(v)*final_graph[6][1]+2
+z = np.cos(v)*final_graph[6][1]+4
+ax.plot_wireframe(x, y, z, color="y")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][2]+0
+y = np.sin(u)*np.sin(v)*final_graph[6][2]+0
+z = np.cos(v)*final_graph[6][2]+4
+ax.plot_wireframe(x, y, z, color="y")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][3]+2
+y = np.sin(u)*np.sin(v)*final_graph[6][3]+0
+z = np.cos(v)*final_graph[6][3]+4
+ax.plot_wireframe(x, y, z, color="y")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][4]+2
+y = np.sin(u)*np.sin(v)*final_graph[6][4]+2
+z = np.cos(v)*final_graph[6][4]+6
+ax.plot_wireframe(x, y, z, color="y")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][5]+0
+y = np.sin(u)*np.sin(v)*final_graph[6][5]+2
+z = np.cos(v)*final_graph[6][5]+6
+ax.plot_wireframe(x, y, z, color="y")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][6]+0
+y = np.sin(u)*np.sin(v)*final_graph[6][6]+0
+z = np.cos(v)*final_graph[6][6]+6
+ax.plot_wireframe(x, y, z, color="y")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[6][7]+2
+y = np.sin(u)*np.sin(v)*final_graph[6][7]+0
+z = np.cos(v)*final_graph[6][7]+6
+ax.plot_wireframe(x, y, z, color="y")
+
+#Quadrant_8
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][0]+6
+y = np.sin(u)*np.sin(v)*final_graph[7][0]+2
+z = np.cos(v)*final_graph[7][0]+4
+ax.plot_wireframe(x, y, z, color="b")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][1]+4
+y = np.sin(u)*np.sin(v)*final_graph[7][1]+2
+z = np.cos(v)*final_graph[7][1]+4
+ax.plot_wireframe(x, y, z, color="b")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][2]+4
+y = np.sin(u)*np.sin(v)*final_graph[7][2]+0
+z = np.cos(v)*final_graph[7][2]+4
+ax.plot_wireframe(x, y, z, color="b")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][3]+6
+y = np.sin(u)*np.sin(v)*final_graph[7][3]+0
+z = np.cos(v)*final_graph[7][3]+4
+ax.plot_wireframe(x, y, z, color="b")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][4]+6
+y = np.sin(u)*np.sin(v)*final_graph[7][4]+2
+z = np.cos(v)*final_graph[7][4]+6
+ax.plot_wireframe(x, y, z, color="b")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][5]+4
+y = np.sin(u)*np.sin(v)*final_graph[7][5]+2
+z = np.cos(v)*final_graph[7][5]+6
+ax.plot_wireframe(x, y, z, color="b")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][6]+4
+y = np.sin(u)*np.sin(v)*final_graph[7][6]+0
+z = np.cos(v)*final_graph[7][6]+6
+ax.plot_wireframe(x, y, z, color="b")
+
+u, v = np.mgrid[0:2*np.pi:10j, 0:np.pi:10j]
+x = np.cos(u)*np.sin(v)*final_graph[7][7]+6
+y = np.sin(u)*np.sin(v)*final_graph[7][7]+0
+z = np.cos(v)*final_graph[7][7]+6
+ax.plot_wireframe(x, y, z, color="b")
+
 plt.show()
